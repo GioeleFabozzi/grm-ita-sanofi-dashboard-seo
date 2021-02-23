@@ -1,6 +1,7 @@
 {
     "warehouse": "bigquery",
-    "defaultSchema": "dataform",
-    "assertionSchema": "dataform_assertions",
+    "defaultSchema": "dashboard_seo_reporting",
+    "assertionSchema": "dashboard_seo_reporting_assertions",
     "defaultDatabase": "grm-ita-sanofi"
 }
+
