@@ -3,7 +3,28 @@
         {
             "name": "production",
             "configOverride": {},
+            "schedules": [
+                {
+                "name": "all_project_everyday_09am",
+                "cron": "0 9 * * mon,tue,wed,thu,fri,sat,sun",
+                "options": {
+                "includeDependencies": true,
+                "includeDependents": false
+                           } 
+                }
+      ],
             "gitRef": "master"
         }
-    ]
+    ],
+  "notificationChannels": [
+    {
+      "name": "sanofi_dashboard_seo",
+      "email": {
+        "to": [
+        "federico.delfino@groupm.com"
+        ]
+      }
+    }
+  ]
 }
+
