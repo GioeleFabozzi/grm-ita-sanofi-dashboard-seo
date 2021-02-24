@@ -1,0 +1,56 @@
+config {
+  type: "table",
+  schema: "dashboard_seo_staging"
+}
+
+
+WITH aggr_ga_new_goal_1 AS (
+SELECT 
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath,
+    SUM(gagoal1completions) AS gagoal1completions,
+    SUM(gagoal10completions) AS gagoal10completions,
+    SUM(gagoal11completions) AS gagoal11completions,
+    SUM(gagoal9completions) AS gagoal9completions,
+    SUM(gagoal6completions) AS gagoal6completions,
+    SUM(gagoal7completions) AS gagoal7completions,
+    SUM(gagoal12completions) AS gagoal12completions,
+    SUM(gagoal13completions) AS gagoal13completions
+FROM 
+    ${ref('raw_uwell_ga_goal')}
+GROUP BY
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath
+),
+
+ranked_ga_goal_1 AS(
+SELECT 
+    RANK() OVER(PARTITION BY 
+                    gadate, 
+                    gachannelgrouping,
+                    gasourcemedium, 
+                    gadevicecategory, 
+                    galandingpagepath
+           ORDER BY dt_created DESC) AS rank,
+    * EXCEPT(dt_created)
+FROM
+   aggr_ga_new_goal_1
+)
+
+SELECT
+    * EXCEPT(rank) 
+FROM 
+    ranked_ga_goal_1 
+WHERE rank = 1
+
+
+
+    
