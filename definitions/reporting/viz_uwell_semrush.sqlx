@@ -1,0 +1,18 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    landing AS page,
+    Keyword AS keyword,
+    type,
+    AVG(position) AS position,
+    AVG(difference) AS difference,
+    --CPC,
+    SUM(Search_Volume) AS volume
+FROM 
+    ${ref('raw_uwell_semrush')}
+GROUP BY
+    page,
+    keyword,
+    type
