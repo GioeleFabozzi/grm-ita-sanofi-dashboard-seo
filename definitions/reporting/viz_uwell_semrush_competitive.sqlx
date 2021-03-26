@@ -2,13 +2,11 @@ config {
   type: "table"
 }
 
-WITH union_all AS (
 SELECT 
     'uwell' AS source,
     keyword,
     REGEXP_EXTRACT(uwell_landing, r'\.it(.*)') AS landing,
-    --uwell_type AS type,
-   -- tag,
+    tag,
     AVG(CAST(uwell_position AS FLOAT64)) AS position,
     AVG(CAST(uwell_difference AS FLOAT64)) AS difference,
      SUM(CAST(volume AS FLOAT64)) as total_volume
@@ -19,9 +17,8 @@ WHERE
     AND uwell_type = 'organic'
 GROUP BY     
     keyword,
-    landing--,
-    --type,
-    --tag
+    landing,
+    tag
 
 UNION ALL
 
@@ -29,8 +26,7 @@ SELECT
     'my-personaltrainer' AS source,
     keyword,
     REGEXP_EXTRACT(mypersonaltrainer_landing, r'\.it(.*)') AS landing,
-    --mypersonaltrainer_type AS type,
-    --tag,
+    tag,
     AVG(CAST(mypersonaltrainer_position AS FLOAT64)) AS position,
     AVG(CAST(mypersonaltrainer_difference AS FLOAT64)) AS difference,
     SUM(CAST(volume AS FLOAT64)) as total_volume
@@ -41,9 +37,8 @@ WHERE
     AND mypersonaltrainer_type = 'organic'
 GROUP BY     
     keyword,
-    landing--,
-    --type,
-    --tag
+    landing,
+    tag
     
 UNION ALL
 
@@ -51,8 +46,7 @@ SELECT
     'starbene' AS source,
     keyword,
     REGEXP_EXTRACT(starbene_landing, r'\.it(.*)') AS landing,
-    --starbene_type AS type,
-    --tag,
+    tag,
     AVG(CAST(starbene_position AS FLOAT64)) AS position,
     AVG(CAST(starbene_difference AS FLOAT64)) AS difference,
     SUM(CAST(volume AS FLOAT64)) as total_volume
@@ -63,22 +57,6 @@ WHERE
     AND starbene_type = 'organic'
 GROUP BY     
     keyword,
-    landing--,
-    --type,
-    --tag
-)
-
-
-SELECT
-    source,
     landing,
-    keyword,
-    AVG(position) AS position,
-    AVG(difference) AS difference,
-    SUM(total_volume) as total_volume
-FROM
-    union_all
-GROUP BY
-    source,
-    landing,
-    keyword
+    tag
+
