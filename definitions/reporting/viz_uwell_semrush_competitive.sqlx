@@ -8,7 +8,7 @@ SELECT
     keyword,
     REGEXP_EXTRACT(uwell_landing, r'\.it(.*)') AS landing,
     uwell_type AS type,
-    tag,
+   -- tag,
     AVG(CAST(uwell_position AS FLOAT64)) AS position,
     AVG(CAST(uwell_difference AS FLOAT64)) AS difference,
      SUM(CAST(volume AS FLOAT64)) as total_volume
@@ -20,8 +20,8 @@ WHERE
 GROUP BY     
     keyword,
     landing,
-    type,
-    tag
+    type--,
+   -- tag
 
 UNION ALL
 
@@ -30,7 +30,7 @@ SELECT
     keyword,
     REGEXP_EXTRACT(mypersonaltrainer_landing, r'\.it(.*)') AS landing,
     mypersonaltrainer_type AS type,
-    tag,
+    --tag,
     AVG(CAST(mypersonaltrainer_position AS FLOAT64)) AS position,
     AVG(CAST(mypersonaltrainer_difference AS FLOAT64)) AS difference,
     SUM(CAST(volume AS FLOAT64)) as total_volume
@@ -42,8 +42,8 @@ WHERE
 GROUP BY     
     keyword,
     landing,
-    type,
-    tag
+    type--,
+    --tag
     
 UNION ALL
 
@@ -52,7 +52,7 @@ SELECT
     keyword,
     REGEXP_EXTRACT(starbene_landing, r'\.it(.*)') AS landing,
     starbene_type AS type,
-    tag,
+    --tag,
     AVG(CAST(starbene_position AS FLOAT64)) AS position,
     AVG(CAST(starbene_difference AS FLOAT64)) AS difference,
     SUM(CAST(volume AS FLOAT64)) as total_volume
@@ -64,6 +64,6 @@ WHERE
 GROUP BY     
     keyword,
     landing,
-    type,
-    tag
+    type--,
+    --tag
 
