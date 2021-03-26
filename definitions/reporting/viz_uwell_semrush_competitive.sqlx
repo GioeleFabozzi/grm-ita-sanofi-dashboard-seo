@@ -10,12 +10,13 @@ SELECT
     uwell_type AS type,
     tag,
     AVG(CAST(uwell_position AS FLOAT64)) AS position,
-    AVG(CAST(uwell_difference AS FLOAT64)) AS difference
+    AVG(CAST(uwell_difference AS FLOAT64)) AS difference,
+     SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
     ${ref('raw_uwell_semrush_overview')}
 WHERE 
     uwell_landing is not null 
-   -- AND uwell_type = 'organic'
+    AND uwell_type = 'organic'
 GROUP BY     
     keyword,
     landing,
@@ -31,12 +32,13 @@ SELECT
     mypersonaltrainer_type AS type,
     tag,
     AVG(CAST(mypersonaltrainer_position AS FLOAT64)) AS position,
-    AVG(CAST(mypersonaltrainer_difference AS FLOAT64)) AS difference
+    AVG(CAST(mypersonaltrainer_difference AS FLOAT64)) AS difference,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
     ${ref('raw_uwell_semrush_overview')}
 WHERE 
     mypersonaltrainer_landing is not null 
-    --AND mypersonaltrainer_type = 'organic'
+    AND mypersonaltrainer_type = 'organic'
 GROUP BY     
     keyword,
     landing,
@@ -52,12 +54,13 @@ SELECT
     starbene_type AS type,
     tag,
     AVG(CAST(starbene_position AS FLOAT64)) AS position,
-    AVG(CAST(starbene_difference AS FLOAT64)) AS difference
+    AVG(CAST(starbene_difference AS FLOAT64)) AS difference,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
     ${ref('raw_uwell_semrush_overview')}
 WHERE 
     starbene_landing is not null 
-    --AND starbene_type = 'organic'
+    AND starbene_type = 'organic'
 GROUP BY     
     keyword,
     landing,
