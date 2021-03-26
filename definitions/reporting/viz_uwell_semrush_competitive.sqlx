@@ -72,6 +72,7 @@ GROUP BY
 SELECT
     source,
     landing,
+    keyword,
     AVG(position) AS position,
     AVG(difference) AS difference,
     SUM(total_volume) as total_volume
@@ -79,4 +80,5 @@ FROM
     union_all
 GROUP BY
     source,
-    landing
+    landing,
+    keyword
