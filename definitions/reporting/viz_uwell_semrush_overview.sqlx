@@ -1,0 +1,24 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    keyword,
+    tag,
+    uwell_landing,
+    uwell_type,
+    uwell_position,
+    uwell_difference,
+    mypersonaltrainer_landing,
+    mypersonaltrainer_type,
+    mypersonaltrainer_position,
+    mypersonaltrainer_difference,
+    starbene_landing,
+    starbene_type,
+    starbene_position,
+    starbene_difference,
+    volume
+FROM 
+  ${ref('raw_uwell_semrush_overview')}
+WHERE 
+    uwell_landing is not null
