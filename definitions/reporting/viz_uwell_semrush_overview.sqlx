@@ -7,17 +7,18 @@ SELECT
     tag,
     uwell_landing,
     uwell_type,
-    uwell_position,
-    uwell_difference,
+    CAST(uwell_position AS FLOAT64) AS uwell_position,
+    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
     mypersonaltrainer_landing,
     mypersonaltrainer_type,
-    mypersonaltrainer_position,
-    mypersonaltrainer_difference,
+    CAST(mypersonaltrainer_position AS FLOAT64) AS mypersonaltrainer_position,
+    CAST(mypersonaltrainer_difference AS FLOAT64) AS mypersonaltrainer_difference,
     starbene_landing,
     starbene_type,
-    starbene_position,
-    starbene_difference,
-    volume
+    CAST(starbene_position AS FLOAT64) AS starbene_position,
+    CAST(starbene_difference AS FLOAT64) AS starbene_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_uwell_semrush_overview')}
 WHERE 
