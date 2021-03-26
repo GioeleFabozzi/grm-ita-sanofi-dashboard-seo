@@ -6,7 +6,7 @@ config {
 SELECT 
     'uwell' AS source,
     keyword,
-    uwell_landing AS landing,
+    REGEXP_EXTRACT(uwell_landing, r'\.it(.*)') AS landing,
     uwell_type AS type,
     tag,
     AVG(CAST(uwell_position AS FLOAT64)) AS position,
@@ -18,8 +18,8 @@ WHERE
    -- AND uwell_type = 'organic'
 GROUP BY     
     keyword,
-    uwell_landing,
-    uwell_type,
+    landing,
+    type,
     tag
 
 UNION ALL
@@ -27,7 +27,7 @@ UNION ALL
 SELECT 
     'my-personaltrainer' AS source,
     keyword,
-    mypersonaltrainer_landing AS landing,
+    REGEXP_EXTRACT(mypersonaltrainer_landing, r'\.it(.*)') AS landing,
     mypersonaltrainer_type AS type,
     tag,
     AVG(CAST(mypersonaltrainer_position AS FLOAT64)) AS position,
@@ -39,8 +39,8 @@ WHERE
     --AND mypersonaltrainer_type = 'organic'
 GROUP BY     
     keyword,
-    mypersonaltrainer_landing,
-    mypersonaltrainer_type,
+    landing,
+    type,
     tag
     
 UNION ALL
@@ -48,8 +48,8 @@ UNION ALL
 SELECT 
     'starbene' AS source,
     keyword,
-    starbene_landing AS landing,
-    starbene_type AS typr,
+    REGEXP_EXTRACT(starbene_landing, r'\.it(.*)') AS landing,
+    starbene_type AS type,
     tag,
     AVG(CAST(starbene_position AS FLOAT64)) AS position,
     AVG(CAST(starbene_difference AS FLOAT64)) AS difference
@@ -60,7 +60,7 @@ WHERE
     --AND starbene_type = 'organic'
 GROUP BY     
     keyword,
-    starbene_landing,
-    starbene_type,
+    landing,
+    type,
     tag
 
