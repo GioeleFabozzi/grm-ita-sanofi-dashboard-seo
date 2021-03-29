@@ -1,0 +1,66 @@
+config {
+  type: "table",
+  schema: "dashboard_seo_staging"
+}
+
+
+WITH aggr_ga_traffic AS (
+SELECT 
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath,
+    SUM(gabounces) AS gabounces,
+    SUM(ganewusers) AS ganewusers,
+    SUM(gapageviews) AS gapageviews,
+    AVG(gasessionduration) AS gasessionduration,
+    AVG(gapageloadtime) AS gapageloadtime,
+    SUM(gasessions) AS gasessions,
+    SUM(gausers) AS gausers
+FROM 
+    ${ref('raw_maalox_ga_traffic')}
+GROUP BY
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath
+
+),
+
+ranked_ga_traffic AS(
+SELECT 
+    RANK() OVER(PARTITION BY 
+                    gadate, 
+                    gachannelgrouping,
+                    gasourcemedium, 
+                    gadevicecategory, 
+                    galandingpagepath
+           ORDER BY dt_created DESC) AS rank,
+    * EXCEPT(dt_created)
+FROM
+   aggr_ga_traffic
+)
+
+SELECT
+    * EXCEPT(rank), 
+    CASE
+      WHEN gapageloadtime < 3.5 THEN '1 - 3 sec'
+      WHEN gapageloadtime < 5.5 THEN '4 - 5 sec'
+      WHEN gapageloadtime < 10.5 THEN '6 - 10 sec'
+      WHEN gapageloadtime < 20.5 THEN '11 - 20 sec'
+      WHEN gapageloadtime > 20.5 THEN 'oltre i 21 sec'
+    ELSE 'other' END AS gapageloadtimerange,    
+    CASE
+      WHEN gapageloadtime < 3.5 THEN '1'
+      WHEN gapageloadtime < 5.5 THEN '2'
+      WHEN gapageloadtime < 10.5 THEN '3'
+      WHEN gapageloadtime < 20.5 THEN '4'
+      WHEN gapageloadtime > 20.5 THEN '5'
+    ELSE 'other' END AS gapageloadtimerangeordered   
+FROM 
+    ranked_ga_traffic
+WHERE rank = 1
