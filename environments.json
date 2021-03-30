@@ -9,8 +9,17 @@
           "cron": "0 9 * * mon,tue,wed,thu,fri,sat,sun",
           "options": {
             "includeDependencies": true,
+            "fullRefresh": true,
             "includeDependents": false
-          }
+          },
+          "notify": [
+            {
+              "channel": "sanofi_dashboard_seo",
+              "statuses": [
+                "FAILURE"
+              ]
+            }
+          ]
         }
       ],
       "gitRef": "master"
