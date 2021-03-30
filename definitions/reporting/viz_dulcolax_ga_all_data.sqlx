@@ -1,0 +1,63 @@
+config {
+  type: "table"
+}
+
+SELECT
+    IFNULL(traffic.gadate, goal.gadate) AS ga_date,
+    IFNULL(traffic.gachannelgrouping, goal.gachannelgrouping) AS ga_channel_grouping,
+    IFNULL(traffic.gasourcemedium, goal.gasourcemedium) AS ga_source_medium,
+    IFNULL(traffic.gadevicecategory, goal.gadevicecategory) AS ga_device_category,
+    IFNULL(traffic.galandingpagepath, goal.galandingpagepath) AS ga_page,
+    IFNULL(SUM(gabounces), 0) AS ga_bounces,
+    IFNULL(SUM(ganewusers), 0) AS ga_newusers,
+    IFNULL(SUM(gapageviews), 0) AS ga_pageviews,
+    IFNULL(AVG(gasessionduration), 0) AS ga_session_duration,
+    IFNULL(AVG(gaavgsessionduration), 0) AS ga_avg_session_duration,
+    IFNULL(SUM(gasessions), 0) AS ga_sessions,
+    IFNULL(SUM(gausers), 0) AS ga_users,
+    IFNULL(AVG(gapageloadtime), 0) AS ga_page_load_time,
+    IFNULL(AVG(gaavgpageloadtime), 0) AS ga_avg_page_load_time,
+    gapageloadtimerange AS ga_page_load_time_range,
+    gaavgpageloadtimerange AS ga_avg_page_load_time_range,
+    gapageloadtimerangeordered AS ga_page_load_time_range_ordered,
+    gaavgpageloadtimerangeordered AS ga_avg_page_load_time_range_ordered,
+    IFNULL(AVG(gaavgpagedownloadtime), 0) AS ga_avg_page_download_time,
+    IFNULL(SUM(gagoal1completions), 0) AS ga_goal_smart_goal,
+    IFNULL(SUM(gagoal2completions), 0) AS ga_goal_score_engagement_15,
+    IFNULL(SUM(gagoal3completions), 0) AS ga_goal_score_engagement_25,
+    IFNULL(SUM(gagoal4completions), 0) AS ga_goal_score_engagement_40,
+    IFNULL(SUM(gagoal5completions), 0) AS ga_goal_score_engagement_80
+FROM
+    ${ref('dulcolax_ga_traffic')} AS traffic
+    FULL JOIN ${ref('dulcolax_ga_duration')} AS duration
+    ON traffic.gadate = duration.gadate 
+       AND traffic.gasourcemedium = duration.gasourcemedium
+       AND traffic.gadevicecategory = duration.gadevicecategory 
+       AND traffic.gachannelgrouping = duration.gachannelgrouping 
+       AND traffic.galandingpagepath = duration.galandingpagepath
+    FULL JOIN ${ref('dulcolax_ga_goal')} AS goal
+    ON traffic.gadate = goal.gadate 
+       AND traffic.gasourcemedium = goal.gasourcemedium
+       AND traffic.gadevicecategory = goal.gadevicecategory 
+       AND traffic.gachannelgrouping = goal.gachannelgrouping 
+       AND traffic.galandingpagepath = goal.galandingpagepath
+GROUP BY
+    ga_date,
+    ga_channel_grouping,
+    ga_source_medium,
+    ga_device_category,
+    ga_page,
+    gapageloadtimerange,
+    gaavgpageloadtimerange,
+    gapageloadtimerangeordered,
+    gaavgpageloadtimerangeordered
+ORDER BY
+    ga_date,
+    ga_channel_grouping,
+    ga_source_medium,
+    ga_device_category,
+    ga_page
+
+
+
+

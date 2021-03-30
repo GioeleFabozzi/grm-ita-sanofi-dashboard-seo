@@ -1,0 +1,53 @@
+config {
+  type: "table",
+  schema: "dashboard_seo_staging"
+}
+
+
+WITH aggr_ga_new_goal_1 AS (
+SELECT 
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath,
+    SUM(gagoal1completions) AS gagoal1completions,
+    SUM(gagoal2completions) AS gagoal2completions,
+    SUM(gagoal3completions) AS gagoal3completions,
+    SUM(gagoal4completions) AS gagoal4completions,
+    SUM(gagoal5completions) AS gagoal5completions
+FROM 
+    ${ref('raw_fexallegra_ga_goal')}
+GROUP BY
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath
+),
+
+ranked_ga_goal_1 AS(
+SELECT 
+    RANK() OVER(PARTITION BY 
+                    gadate, 
+                    gachannelgrouping,
+                    gasourcemedium, 
+                    gadevicecategory, 
+                    galandingpagepath
+           ORDER BY dt_created DESC) AS rank,
+    * EXCEPT(dt_created)
+FROM
+   aggr_ga_new_goal_1
+)
+
+SELECT
+    * EXCEPT(rank) 
+FROM 
+    ranked_ga_goal_1 
+WHERE rank = 1
+
+
+
+    
