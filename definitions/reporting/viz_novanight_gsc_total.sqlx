@@ -1,0 +1,19 @@
+config {
+  type: "table"
+}
+
+WITH ranked_viz_gsc_total AS (
+SELECT 
+    RANK() OVER(PARTITION BY date, site_url ORDER BY dt_created DESC) AS rank,
+    * EXCEPT(dt_created, dt_updated, dt_filename)
+FROM 
+    ${ref('raw_novanight_gsc_total')}
+ORDER BY 
+    date, site_url
+)
+
+SELECT 
+    * EXCEPT(rank) 
+FROM 
+    ranked_viz_gsc_total 
+WHERE rank = 1

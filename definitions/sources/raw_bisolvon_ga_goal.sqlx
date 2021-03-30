@@ -1,0 +1,6 @@
+config {
+  type: "declaration",
+  schema: "dashboard_seo_raw",
+  name: "raw_bisolvon_ga_goal",
+  description: "Raw ga goal metrics"
+}

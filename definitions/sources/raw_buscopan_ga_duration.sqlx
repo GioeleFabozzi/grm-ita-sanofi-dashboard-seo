@@ -1,0 +1,6 @@
+config {
+  type: "declaration",
+  schema: "dashboard_seo_raw",
+  name: "raw_buscopan_ga_duration",
+  description: "Raw ga avg time metrics"
+}

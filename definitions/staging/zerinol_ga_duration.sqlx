@@ -1,0 +1,67 @@
+config {
+  type: "table",
+  schema: "dashboard_seo_staging"
+}
+
+WITH aggr_ga_duration AS (
+SELECT 
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath,
+    AVG(gaavgsessionduration_2) AS gaavgsessionduration,
+    AVG(gaavgpageloadtime_2) AS gaavgpageloadtime,
+    AVG(gaavgpagedownloadtime_2) AS gaavgpagedownloadtime
+FROM 
+    ${ref('raw_zerinol_ga_duration')}
+GROUP BY
+    dt_created,
+    gadate, 
+    gachannelgrouping,
+    gasourcemedium, 
+    gadevicecategory, 
+    galandingpagepath
+
+),
+
+ranked_ga_duration AS(
+SELECT 
+    RANK() OVER(PARTITION BY 
+                    gadate, 
+                    gachannelgrouping,
+                    gasourcemedium, 
+                    gadevicecategory, 
+                    galandingpagepath--,
+                    --gaargumentointeresse
+           ORDER BY dt_created DESC) AS rank,
+    * EXCEPT(dt_created)
+FROM
+   aggr_ga_duration
+)
+
+SELECT
+    * EXCEPT(rank),
+    CASE
+      WHEN gaavgpageloadtime < 3.5 THEN '1 - 3 sec'
+      WHEN gaavgpageloadtime < 5.5 THEN '4 - 5 sec'
+      WHEN gaavgpageloadtime < 10.5 THEN '6 - 10 sec'
+      WHEN gaavgpageloadtime < 20.5 THEN '11 - 20 sec'
+      WHEN gaavgpageloadtime > 20.5 THEN 'oltre i 21 sec'
+    ELSE 'other' END AS gaavgpageloadtimerange,    
+    CASE
+      WHEN gaavgpageloadtime < 3.5 THEN '1'
+      WHEN gaavgpageloadtime < 5.5 THEN '2'
+      WHEN gaavgpageloadtime < 10.5 THEN '3'
+      WHEN gaavgpageloadtime < 20.5 THEN '4'
+      WHEN gaavgpageloadtime > 20.5 THEN '5'
+    ELSE 'other' END AS gaavgpageloadtimerangeordered   
+FROM 
+    ranked_ga_duration
+WHERE 
+    rank = 1
+
+
+
+    
