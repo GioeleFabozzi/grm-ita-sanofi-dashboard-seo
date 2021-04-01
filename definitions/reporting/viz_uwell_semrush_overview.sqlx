@@ -15,8 +15,10 @@ SELECT
     CAST(mypersonaltrainer_difference AS FLOAT64) AS mypersonaltrainer_difference,
     blogpharmap_landing,
     blogpharmap_type,
-    CAST(blogpharmap_position AS FLOAT64) AS blogpharmap_position,
-    CAST(blogpharmap_difference AS FLOAT64) AS blogpharmap_difference,
+    --CAST(blogpharmap_position AS FLOAT64) AS 
+    blogpharmap_position,
+    --CAST(blogpharmap_difference AS FLOAT64) AS 
+    blogpharmap_difference,
     saperesalute_landing,
     saperesalute_type,
     CAST(saperesalute_position AS FLOAT64) AS saperesalute_position,
