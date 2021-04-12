@@ -1,0 +1,28 @@
+config {
+  type: "table"
+}
+
+WITH all_tbl AS (
+SELECT   
+    ga_date,
+    ga_channel_grouping,
+    ga_source_medium,
+    ga_device_category,
+    ga_page,
+    'Smart Goal' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
+    SUM(ga_goal_smart_goal) AS conversions
+FROM 
+    ${ref('viz_zerinoll_ga_all_data')} 
+GROUP BY 
+    ga_date,
+    ga_channel_grouping,
+    ga_source_medium,
+    ga_device_category,
+    ga_page,
+    ga_goal_type
+)
+
+SELECT * FROM all_tbl WHERE conversions>0
+
+
