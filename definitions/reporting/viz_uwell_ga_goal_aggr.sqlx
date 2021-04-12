@@ -9,7 +9,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_session_qualified' AS ga_goal_type,
+    'Sessions Qualified' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_session_qualified) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
@@ -29,7 +30,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_newsletter_registration' AS ga_goal_type,
+    'Newsletter Registration' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_newsletter_registration) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
@@ -49,7 +51,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_survey_enterogermina_antibiotico' AS ga_goal_type,
+    'Survey Enterogermina Antibiotico' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_survey_enterogermina_antibiotico) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
@@ -69,7 +72,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_survey_mag' AS ga_goal_type,
+    'Survey Mag' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_survey_mag) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
@@ -89,7 +93,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_survey_novanight' AS ga_goal_type,
+    'Survey Novanight' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_survey_novanight) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
@@ -109,7 +114,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_survey_enterogermina_2' AS ga_goal_type,
+    'Survey Enterogermina 2' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_survey_enterogermina_2) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
@@ -129,7 +135,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_click_cerca_medico' AS ga_goal_type,
+    'Click Cerca Medico' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_click_cerca_medico) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
@@ -149,7 +156,8 @@ SELECT
     ga_source_medium,
     ga_device_category,
     ga_page,
-    'ga_goal_click_cerca_video_consulto' AS ga_goal_type,
+    'Click Cerca Video Consulto' AS ga_goal_type,
+    SUM(ga_sessions) AS total_sessions,
     SUM(ga_goal_click_cerca_video_consulto) AS conversions
 FROM 
     ${ref('viz_ga_all_data')} 
