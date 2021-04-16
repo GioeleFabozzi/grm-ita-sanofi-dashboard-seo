@@ -1,0 +1,6 @@
+config {
+  type: "declaration",
+  schema: "dashboard_seo_raw",
+  name: "raw_enterogermina_semrush_overview",
+  description: ""
+}
