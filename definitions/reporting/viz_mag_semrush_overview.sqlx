@@ -1,0 +1,33 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    keyword,
+    tag,
+    mag_landing,
+    mag_type,
+    CAST(mag_position AS FLOAT64) AS mag_position,
+    CAST(mag_difference AS FLOAT64) AS mag_difference,
+    uwell_landing,
+    uwell_type,
+    CAST(uwell_position AS FLOAT64) AS uwell_position,
+    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
+    supradyn_landing,
+    supradyn_type,
+    CAST(supradyn_position AS FLOAT64) AS supradyn_position,
+    CAST(supradyn_difference AS FLOAT64) AS supradyn_difference,
+    multicentrum_landing,
+    multicentrum_type,
+    CAST(multicentrum_position AS FLOAT64) AS multicentrum_position,
+    CAST(multicentrum_difference AS FLOAT64) AS multicentrum_difference,
+    namedsport_landing,
+    namedsport_type,
+    CAST(namedsport_position AS FLOAT64) AS namedsport_position,
+    CAST(namedsport_difference AS FLOAT64) AS namedsport_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_mag_semrush_overview')}
+WHERE 
+    mag_landing is not null

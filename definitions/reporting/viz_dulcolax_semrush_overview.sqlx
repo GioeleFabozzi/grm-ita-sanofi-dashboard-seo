@@ -1,0 +1,33 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    keyword,
+    tag,
+    dulcolax_landing,
+    dulcolax_type,
+    CAST(dulcolax_position AS FLOAT64) AS dulcolax_position,
+    CAST(dulcolax_difference AS FLOAT64) AS dulcolax_difference,
+    uwell_landing,
+    uwell_type,
+    CAST(uwell_position AS FLOAT64) AS uwell_position,
+    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
+    evaqu_landing,
+    evaqu_type,
+    CAST(evaqu_position AS FLOAT64) AS evaqu_position,
+    CAST(evaqu_difference AS FLOAT64) AS evaqu_difference,
+    esi_landing,
+    esi_type,
+    CAST(esi_position AS FLOAT64) AS esi_position,
+    CAST(esi_difference AS FLOAT64) AS esi_difference,
+    geffer_landing,
+    geffer_type,
+    CAST(geffer_position AS FLOAT64) AS geffer_position,
+    CAST(geffer_difference AS FLOAT64) AS geffer_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_dulcolax_semrush_overview')}
+WHERE 
+    dulcolax_landing is not null

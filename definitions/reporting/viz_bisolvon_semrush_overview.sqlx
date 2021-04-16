@@ -1,0 +1,33 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    keyword,
+    tag,
+    bisolvon_landing,
+    bisolvon_type,
+    CAST(bisolvon_position AS FLOAT64) AS bisolvon_position,
+    CAST(bisolvon_difference AS FLOAT64) AS bisolvon_difference,
+    uwell_landing,
+    uwell_type,
+    CAST(uwell_position AS FLOAT64) AS uwell_position,
+    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
+    seki_landing,
+    seki_type,
+    CAST(seki_position AS FLOAT64) AS seki_position,
+    CAST(seki_difference AS FLOAT64) AS seki_difference,
+    fluimucil_landing,
+    fluimucil_type,
+    CAST(fluimucil_position AS FLOAT64) AS fluimucil_position,
+    CAST(fluimucil_difference AS FLOAT64) AS fluimucil_difference,
+    grintuss_landing,
+    grintuss_type,
+    CAST(grintuss_position AS FLOAT64) AS grintuss_position,
+    CAST(grintuss_difference AS FLOAT64) AS grintuss_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_bisolvon_semrush_overview')}
+WHERE 
+    bisolvon_landing is not null

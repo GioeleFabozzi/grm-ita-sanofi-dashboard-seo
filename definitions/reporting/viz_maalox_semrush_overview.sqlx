@@ -1,0 +1,33 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    keyword,
+    tag,
+    maalox_landing,
+    maalox_type,
+    CAST(maalox_position AS FLOAT64) AS maalox_position,
+    CAST(maalox_difference AS FLOAT64) AS maalox_difference,
+    uwell_landing,
+    uwell_type,
+    CAST(uwell_position AS FLOAT64) AS uwell_position,
+    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
+    geffer_landing,
+    geffer_type,
+    CAST(geffer_position AS FLOAT64) AS geffer_position,
+    CAST(geffer_difference AS FLOAT64) AS geffer_difference,
+    biochetasi_landing,
+    biochetasi_type,
+    CAST(biochetasi_position AS FLOAT64) AS biochetasi_position,
+    CAST(biochetasi_difference AS FLOAT64) AS biochetasi_difference,
+    citrosodina_landing,
+    citrosodina_type,
+    CAST(citrosodina_position AS FLOAT64) AS citrosodina_position,
+    CAST(citrosodina_difference AS FLOAT64) AS citrosodina_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_maalox_semrush_overview')}
+WHERE 
+    maalox_landing is not null

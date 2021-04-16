@@ -1,0 +1,33 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    keyword,
+    tag,
+    enterogermina_landing,
+    enterogermina_type,
+    CAST(enterogermina_position AS FLOAT64) AS enterogermina_position,
+    CAST(enterogermina_difference AS FLOAT64) AS enterogermina_difference,
+    uwell_landing,
+    uwell_type,
+    CAST(uwell_position AS FLOAT64) AS uwell_position,
+    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
+    yovis_landing,
+    yovis_type,
+    CAST(yovis_position AS FLOAT64) AS yovis_position,
+    CAST(yovis_difference AS FLOAT64) AS yovis_difference,
+    multicentrum_landing,
+    multicentrum_type,
+    CAST(multicentrum_position AS FLOAT64) AS multicentrum_position,
+    CAST(multicentrum_difference AS FLOAT64) AS multicentrum_difference,
+    lactoflorene_landing,
+    lactoflorene_type,
+    CAST(lactoflorene_position AS FLOAT64) AS lactoflorene_position,
+    CAST(lactoflorene_difference AS FLOAT64) AS lactoflorene_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_enterogermina_semrush_overview')}
+WHERE 
+    enterogermina_landing is not null
