@@ -2,18 +2,17 @@ config {
   type: "table"
 }
 
-WITH ranked_viz_gsc_query_page AS (
+WITH temp_viz_gsc_query_page AS (
 SELECT 
-    RANK() OVER(PARTITION BY date, query, page, site_url ORDER BY dt_created DESC) AS rank,
-    * EXCEPT(dt_created, dt_updated, dt_filename)
+    *,
+    CASE WHEN LOWER(query) LIKE '%ma%lo%x%' THEN 'Brand' ELSE 'Generic' END AS query_type
 FROM 
-    ${ref('raw_maalox_gsc_query_page')}
-ORDER BY 
-    date, query, page, site_url
+    ${ref('maalox_gsc_query_page')}
 )
 
 SELECT 
-    * EXCEPT(rank) 
+    *
 FROM 
-    ranked_viz_gsc_query_page 
-WHERE rank = 1
+    temp_viz_gsc_query_page 
+ORDER BY 
+    date, query, page, site_url

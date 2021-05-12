@@ -1,0 +1,19 @@
+config {
+  type: "table"
+}
+
+WITH ranked_viz_gsc_query_page AS (
+SELECT 
+    RANK() OVER(PARTITION BY date, query, page, site_url ORDER BY dt_created DESC) AS rank,
+    * EXCEPT(dt_created, dt_updated, dt_filename)
+FROM 
+    ${ref('raw_mag_gsc_query_page')}
+ORDER BY 
+    date, query, page, site_url
+)
+
+SELECT 
+    * EXCEPT(rank) 
+FROM 
+    ranked_viz_gsc_query_page 
+WHERE rank = 1
