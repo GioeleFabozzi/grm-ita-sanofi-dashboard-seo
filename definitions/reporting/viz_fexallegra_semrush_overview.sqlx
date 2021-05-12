@@ -19,8 +19,10 @@ SELECT
     CAST(reactiline_difference AS FLOAT64) AS reactiline_difference,
     sanispira_landing,
     sanispira_type,
-    CAST(sanispira_position AS FLOAT64) AS sanispira_position,
-    CAST(sanispira_difference AS FLOAT64) AS sanispira_difference,
+    --CAST(sanispira_position AS FLOAT64) AS 
+    sanispira_position,
+    --CAST(sanispira_difference AS FLOAT64) AS 
+    sanispira_difference,
     rinazina_landing,
     rinazina_type,
     CAST(rinazina_position AS FLOAT64) AS rinazina_position,
