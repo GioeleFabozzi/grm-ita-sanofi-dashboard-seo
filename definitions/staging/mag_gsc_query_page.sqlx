@@ -1,5 +1,6 @@
 config {
-  type: "table"
+  type: "table",
+  schema: "dashboard_seo_staging"
 }
 
 WITH ranked_viz_gsc_query_page AS (
