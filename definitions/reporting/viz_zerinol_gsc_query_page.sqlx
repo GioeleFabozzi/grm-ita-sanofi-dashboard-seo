@@ -5,7 +5,7 @@ config {
 WITH temp_viz_gsc_query_page AS (
 SELECT 
     *,
-    CASE WHEN LOWER(query) LIKE '%zerin%' THEN 'Brand' ELSE 'Generic' END AS query_type
+    CASE WHEN LOWER(query) LIKE '%zer%n%' THEN 'Brand' ELSE 'Generic' END AS query_type
 FROM 
     ${ref('zerinol_gsc_query_page')}
 )

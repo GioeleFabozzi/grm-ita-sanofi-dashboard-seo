@@ -5,7 +5,7 @@ config {
 WITH temp_viz_gsc_query_page AS (
 SELECT 
     *,
-    CASE WHEN LOWER(query) LIKE '%bisol%' THEN 'Brand' ELSE 'Generic' END AS query_type
+    CASE WHEN LOWER(query) LIKE '%bi%so%von%' THEN 'Brand' ELSE 'Generic' END AS query_type
 FROM 
     ${ref('bisolvon_gsc_query_page')}
 )

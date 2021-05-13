@@ -5,7 +5,7 @@ config {
 WITH temp_viz_gsc_query_page AS (
 SELECT 
     *,
-    CASE WHEN LOWER(query) LIKE '%dulco%' THEN 'Brand' ELSE 'Generic' END AS query_type
+    CASE WHEN LOWER(query) LIKE '%dulc%' THEN 'Brand' ELSE 'Generic' END AS query_type
 FROM 
     ${ref('dulcolax_gsc_query_page')}
 )
