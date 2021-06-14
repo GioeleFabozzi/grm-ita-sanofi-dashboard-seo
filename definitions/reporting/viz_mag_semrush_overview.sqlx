@@ -21,10 +21,6 @@ SELECT
     multicentrum_type,
     CAST(multicentrum_position AS FLOAT64) AS multicentrum_position,
     CAST(multicentrum_difference AS FLOAT64) AS multicentrum_difference,
-    betotal_landing,
-    betotal_type,
-    CAST(betotal_position AS FLOAT64) AS betotal_position,
-    CAST(betotal_difference AS FLOAT64) AS betotal_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 
