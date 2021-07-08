@@ -1,0 +1,6 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(EXTRACT(YEAR from CURRENT_DATE()),'-',EXTRACT(MONTH from CURRENT_DATE()),'-',1) AS date) AS first_day_last_month
