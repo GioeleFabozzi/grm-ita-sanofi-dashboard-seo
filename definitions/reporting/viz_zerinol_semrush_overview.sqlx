@@ -23,7 +23,8 @@ SELECT
     CAST(neoborocillina_difference AS FLOAT64) AS neoborocillina_difference,
     actigrip_landing,
     actigrip_type,
-    CAST(actigrip_position AS FLOAT64) AS actigrip_position,
+    --CAST(actigrip_position AS FLOAT64) AS actigrip_position,
+    actigrip_position,
     CAST(actigrip_difference AS FLOAT64) AS actigrip_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
