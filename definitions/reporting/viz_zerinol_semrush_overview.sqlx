@@ -25,7 +25,6 @@ SELECT
     actigrip_type,
     CAST(actigrip_position AS FLOAT64) AS actigrip_position,
     CAST(actigrip_difference AS FLOAT64) AS actigrip_difference,
-    actigrip_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 
