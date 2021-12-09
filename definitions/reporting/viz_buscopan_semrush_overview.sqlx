@@ -23,8 +23,10 @@ SELECT
     CAST(ciboedisturbiaddominali_difference AS FLOAT64) AS ciboedisturbiaddominali_difference,
     enterogermina_landing,
     enterogermina_type,
-    CAST(enterogermina_position AS FLOAT64) AS enterogermina_position,
-    CAST(enterogermina_difference AS FLOAT64) AS enterogermina_difference,
+    --CAST(enterogermina_position AS FLOAT64) AS enterogermina_position,
+    enterogermina_position,
+    --CAST(enterogermina_difference AS FLOAT64) AS enterogermina_difference,
+    enterogermina_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 
