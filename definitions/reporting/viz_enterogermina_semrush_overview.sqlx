@@ -15,8 +15,10 @@ SELECT
     CAST(yovis_difference AS FLOAT64) AS yovis_difference,
     multicentrum_landing,
     multicentrum_type,
-    CAST(multicentrum_position AS FLOAT64) AS multicentrum_position,
-    CAST(multicentrum_difference AS FLOAT64) AS multicentrum_difference,
+    --CAST(multicentrum_position AS FLOAT64) AS 
+    multicentrum_position,
+    --CAST(multicentrum_difference AS FLOAT64) AS 
+    multicentrum_difference,
     lactoflorene_landing,
     lactoflorene_type,
     CAST(lactoflorene_position AS FLOAT64) AS lactoflorene_position,
