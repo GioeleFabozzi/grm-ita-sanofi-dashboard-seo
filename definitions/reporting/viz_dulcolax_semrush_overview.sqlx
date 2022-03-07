@@ -5,10 +5,10 @@ config {
 SELECT 
     keyword,
     tag,
-    dulcolax_landing,
-    dulcolax_type,
-    CAST(dulcolax_position AS FLOAT64) AS dulcolax_position,
-    CAST(dulcolax_difference AS FLOAT64) AS dulcolax_difference,
+    dulcolax_landing AS dulco_landing,
+    dulcolax_type AS dulco_type,
+    CAST(dulcolax_position AS FLOAT64) AS dulco_position,
+    CAST(dulcolax_difference AS FLOAT64) AS dulco_difference,
     evaqu_landing,
     evaqu_type,
     CAST(evaqu_position AS FLOAT64) AS evaqu_position,
@@ -21,12 +21,6 @@ SELECT
     geffer_type,
     CAST(geffer_position AS FLOAT64) AS geffer_position,
     CAST(geffer_difference AS FLOAT64) AS geffer_difference,
-    dulcolax_old_landing,
-    dulcolax_old_type,
-    --CAST(dulcolax_old_position AS FLOAT64) AS dulcolax_old_position,
-    dulcolax_old_position,
-    --CAST(dulcolax_old_difference AS FLOAT64) AS dulcolax_old_difference,
-    dulcolax_old_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 

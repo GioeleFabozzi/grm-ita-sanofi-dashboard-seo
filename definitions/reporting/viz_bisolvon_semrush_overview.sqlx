@@ -9,10 +9,6 @@ SELECT
     bisolvon_type,
     CAST(bisolvon_position AS FLOAT64) AS bisolvon_position,
     CAST(bisolvon_difference AS FLOAT64) AS bisolvon_difference,
-    uwell_landing,
-    uwell_type,
-    CAST(uwell_position AS FLOAT64) AS uwell_position,
-    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
     seki_landing,
     seki_type,
     CAST(seki_position AS FLOAT64) AS seki_position,
@@ -25,6 +21,10 @@ SELECT
     grintuss_type,
     CAST(grintuss_position AS FLOAT64) AS grintuss_position,
     CAST(grintuss_difference AS FLOAT64) AS grintuss_difference,
+    bronchenolo_landing,
+    bronchenolo_type,
+    CAST(bronchenolo_position AS FLOAT64) AS bronchenolo_position,
+    CAST(bronchenolo_difference AS FLOAT64) AS bronchenolo_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 

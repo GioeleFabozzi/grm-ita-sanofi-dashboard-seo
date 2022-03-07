@@ -5,25 +5,31 @@ config {
 SELECT 
     keyword,
     tag,
-    mag_landing,
-    mag_type,
-    CAST(mag_position AS FLOAT64) AS mag_position,
-    CAST(mag_difference AS FLOAT64) AS mag_difference,
-    uwell_landing,
-    uwell_type,
-    CAST(uwell_position AS FLOAT64) AS uwell_position,
-    CAST(uwell_difference AS FLOAT64) AS uwell_difference,
+    ilmagnesio_landing,
+    ilmagnesio_type,
+    CAST(ilmagnesio_position AS FLOAT64) AS ilmagnesio_position,
+    CAST(ilmagnesio_difference AS FLOAT64) AS ilmagnesio_difference,
     supradyn_landing,
     supradyn_type,
     CAST(supradyn_position AS FLOAT64) AS supradyn_position,
     CAST(supradyn_difference AS FLOAT64) AS supradyn_difference,
-    multicentrum_landing,
-    multicentrum_type,
-    CAST(multicentrum_position AS FLOAT64) AS multicentrum_position,
-    CAST(multicentrum_difference AS FLOAT64) AS multicentrum_difference,
+    sustenium_landing,
+    sustenium_type,
+    --CAST(sustenium_position AS FLOAT64) AS 
+    sustenium_position,
+    --CAST(sustenium_difference AS FLOAT64) AS 
+    sustenium_difference,
+    magnesiosupremo_landing,
+    magnesiosupremo_type,
+    CAST(magnesiosupremo_position AS FLOAT64) AS magnesiosupremo_position,
+    CAST(magnesiosupremo_difference AS FLOAT64) AS magnesiosupremo_difference,
+    carnidyn_landing,
+    carnidyn_type,
+    CAST(carnidyn_position AS FLOAT64) AS carnidyn_position,
+    CAST(carnidyn_difference AS FLOAT64) AS carnidyn_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_mag_semrush_overview')}
 WHERE 
-    mag_landing is not null
+    ilmagnesio_landing is not null

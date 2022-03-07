@@ -15,20 +15,16 @@ SELECT
     CAST(yovis_difference AS FLOAT64) AS yovis_difference,
     multicentrum_landing,
     multicentrum_type,
-    --CAST(multicentrum_position AS FLOAT64) AS 
-    multicentrum_position,
-    --CAST(multicentrum_difference AS FLOAT64) AS 
-    multicentrum_difference,
+    CAST(multicentrum_position AS FLOAT64) AS multicentrum_position,
+    CAST(multicentrum_difference AS FLOAT64) AS multicentrum_difference,
     lactoflorene_landing,
     lactoflorene_type,
     CAST(lactoflorene_position AS FLOAT64) AS lactoflorene_position,
     CAST(lactoflorene_difference AS FLOAT64) AS lactoflorene_difference,
-    enterogermina_old_landing,
-    enterogermina_old_type,
-    --CAST(enterogermina_old_position AS FLOAT64) AS enterogermina_old_position,
-    enterogermina_old_position,
-    --CAST(enterogermina_old_difference AS FLOAT64) AS enterogermina_old_difference,
-    enterogermina_old_difference,
+    flormidabil_landing,
+    flormidabil_type,
+    CAST(flormidabil_position AS FLOAT64) AS flormidabil_position,
+    CAST(flormidabil_difference AS FLOAT64) AS flormidabil_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 
