@@ -21,6 +21,10 @@ SELECT
     geffer_type,
     CAST(geffer_position AS FLOAT64) AS geffer_position,
     CAST(geffer_difference AS FLOAT64) AS geffer_difference,
+    laevolac_landing,
+    laevolac_type,
+    CAST(laevolac_position AS FLOAT64) AS laevolac_position,
+    CAST(laevolac_difference AS FLOAT64) AS laevolac_difference,
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 
