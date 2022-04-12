@@ -1,0 +1,102 @@
+config {
+  type: "table"
+}
+
+WITH all_tbl AS (
+SELECT 
+    'enterogermina' AS source,
+    keyword,
+    -- REGEXP_EXTRACT(enterogermina_landing, r'\.it(.*)') AS landing,
+    tag,
+    AVG(CAST(enterogermina_position AS FLOAT64)) AS position,
+    --AVG(CAST(enterogermina_difference AS FLOAT64)) AS difference,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_enterogermina_semrush_overview')}
+WHERE 
+    enterogermina_landing is not null 
+GROUP BY     
+   keyword,
+   -- landing,
+   tag
+
+UNION ALL
+
+SELECT 
+    'yovis' AS source,
+    keyword,
+    -- REGEXP_EXTRACT(yovis_landing, r'\.it(.*)') AS landing,
+    tag,
+    AVG(CAST(yovis_position AS FLOAT64)) AS position,
+    -- AVG(CAST(yovis_difference AS FLOAT64)) AS difference,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_enterogermina_semrush_overview')}
+WHERE 
+    yovis_landing is not null 
+GROUP BY     
+   keyword,
+   -- landing,
+   tag
+    
+UNION ALL
+
+SELECT 
+   'multicentrum' AS source,
+   keyword,
+   -- REGEXP_EXTRACT(multicentrum_landing, r'\.it(.*)') AS landing,
+   tag,
+   AVG(CAST(multicentrum_position AS FLOAT64)) AS position,
+   -- AVG(CAST(multicentrum_difference AS FLOAT64)) AS difference,
+   SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+   ${ref('raw_enterogermina_semrush_overview')}
+WHERE 
+   multicentrum_landing is not null 
+GROUP BY     
+   keyword,
+-- landing,
+   tag
+
+UNION ALL
+
+SELECT 
+    'laevolac' AS source,
+    keyword,
+    -- REGEXP_EXTRACT(laevolac_landing, r'\.it(.*)') AS landing,
+    tag,
+    AVG(CAST(laevolac_position AS FLOAT64)) AS position,
+    -- AVG(CAST(laevolac_difference AS FLOAT64)) AS difference,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_enterogermina_semrush_overview')}
+WHERE 
+  laevolac_landing is not null 
+GROUP BY     
+   keyword,
+   -- landing,
+   tag
+  
+ UNION ALL
+
+SELECT 
+    'lactoflorene' AS source,
+    keyword,
+    -- REGEXP_EXTRACT(lactoflorene_landing, r'\.it(.*)') AS landing,
+    tag,
+    AVG(CAST(lactoflorene_position AS FLOAT64)) AS position,
+    -- AVG(CAST(lactoflorene_difference AS FLOAT64)) AS difference,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_enterogermina_semrush_overview')}
+WHERE 
+  lactoflorene_landing is not null 
+GROUP BY     
+   keyword,
+   -- landing,
+   tag
+
+)
+
+SELECT * FROM all_tbl
+    
