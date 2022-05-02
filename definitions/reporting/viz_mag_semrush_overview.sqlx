@@ -15,8 +15,10 @@ SELECT
     CAST(supradyn_difference AS FLOAT64) AS supradyn_difference,
     sustenium_landing,
     sustenium_type,
-    CAST(sustenium_position AS FLOAT64) AS sustenium_position,
-    CAST(sustenium_difference AS FLOAT64) AS sustenium_difference,
+    --CAST(sustenium_position AS FLOAT64) AS 
+    sustenium_position,
+    --CAST(sustenium_difference AS FLOAT64) AS 
+    sustenium_difference,
     magnesiosupremo_landing,
     magnesiosupremo_type,
     CAST(magnesiosupremo_position AS FLOAT64) AS magnesiosupremo_position,
