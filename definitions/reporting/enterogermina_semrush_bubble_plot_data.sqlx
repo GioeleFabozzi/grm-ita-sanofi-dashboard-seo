@@ -42,17 +42,17 @@ GROUP BY
 UNION ALL
 
 SELECT 
-   'multicentrum' AS source,
+   'geffer' AS source,
    keyword,
-   -- REGEXP_EXTRACT(multicentrum_landing, r'\.it(.*)') AS landing,
+   -- REGEXP_EXTRACT(gefferlanding, r'\.it(.*)') AS landing,
    tag,
-   AVG(CAST(multicentrum_position AS FLOAT64)) AS position,
-   -- AVG(CAST(multicentrum_difference AS FLOAT64)) AS difference,
+   AVG(CAST(geffer_position AS FLOAT64)) AS position,
+   -- AVG(CAST(geffer_difference AS FLOAT64)) AS difference,
    SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
    ${ref('raw_enterogermina_semrush_overview')}
 WHERE 
-   multicentrum_landing is not null 
+   geffer_landing is not null 
 GROUP BY     
    keyword,
 -- landing,
