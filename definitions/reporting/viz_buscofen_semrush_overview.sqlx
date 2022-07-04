@@ -11,8 +11,10 @@ SELECT
     CAST(buscofen_difference AS FLOAT64) AS buscofen_difference,
     okitask_landing,
     okitask_type,
-    CAST(okitask_position AS FLOAT64) AS okitask_position,
-    CAST(okitask_difference AS FLOAT64) AS okitask_difference,
+    --CAST(okitask_position AS FLOAT64) AS 
+    okitask_position,
+    --CAST(okitask_difference AS FLOAT64) AS 
+    okitask_difference,
     spididol_landing,
     spididol_type,
     CAST(spididol_position AS FLOAT64) AS spididol_position,
