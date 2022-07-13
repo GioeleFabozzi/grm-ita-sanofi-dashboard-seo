@@ -29,5 +29,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_dulcolax_semrush_overview')}
-WHERE 
-    dulcolax_landing is not null
+-- WHERE 
+--     dulcolax_landing is not null

@@ -29,5 +29,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_novanight_semrush_overview')}
-WHERE 
-    novanight_landing is not null
+-- WHERE 
+--     novanight_landing is not null

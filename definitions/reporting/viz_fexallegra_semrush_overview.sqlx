@@ -31,5 +31,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_fexallegra_semrush_overview')}
-WHERE 
-    fexallegra_landing is not null
+-- WHERE 
+--     fexallegra_landing is not null

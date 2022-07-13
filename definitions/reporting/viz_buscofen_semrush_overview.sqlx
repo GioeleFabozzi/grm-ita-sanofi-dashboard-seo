@@ -31,5 +31,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_buscofen_semrush_overview')}
-WHERE 
-    buscofen_landing is not null
+-- WHERE 
+--     buscofen_landing is not null

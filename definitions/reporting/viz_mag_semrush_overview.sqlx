@@ -31,5 +31,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_mag_semrush_overview')}
-WHERE 
-    ilmagnesio_landing is not null
+-- WHERE 
+--     ilmagnesio_landing is not null

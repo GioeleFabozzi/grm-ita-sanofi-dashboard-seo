@@ -29,5 +29,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_enterogermina_semrush_overview')}
-WHERE 
-    enterogermina_landing is not null
+-- WHERE 
+--     enterogermina_landing is not null

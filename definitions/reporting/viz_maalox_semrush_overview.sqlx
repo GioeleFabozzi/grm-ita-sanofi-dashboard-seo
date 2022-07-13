@@ -29,5 +29,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_maalox_semrush_overview')}
-WHERE 
-    maalox_landing is not null
+-- WHERE 
+--     maalox_landing is not null

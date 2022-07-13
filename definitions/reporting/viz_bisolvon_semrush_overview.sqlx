@@ -29,5 +29,5 @@ SELECT
     CAST(volume AS FLOAT64) AS volume
 FROM 
   ${ref('raw_bisolvon_semrush_overview')}
-WHERE 
-    bisolvon_landing is not null
+-- WHERE 
+--     bisolvon_landing is not null
