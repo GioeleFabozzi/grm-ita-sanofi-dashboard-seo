@@ -9,8 +9,6 @@ SELECT
     * EXCEPT(dt_created, dt_updated, dt_filename)
 FROM 
     ${ref('raw_maalox_gsc_query_page')}
-ORDER BY 
-    date, query, page, site_url
 )
 
 SELECT 
