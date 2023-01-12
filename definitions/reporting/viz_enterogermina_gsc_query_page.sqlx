@@ -14,5 +14,7 @@ SELECT
     *
 FROM 
     temp_viz_gsc_query_page 
+WHERE
+    page LIKE '%/it-it%'
 ORDER BY 
     date, query, page, site_url
