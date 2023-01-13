@@ -13,9 +13,6 @@ ORDER BY
 )
 
 SELECT 
-    * EXCEPT(rank) 
+    * EXCEPT(rank)  
 FROM 
     ranked_viz_gsc_total 
-WHERE
-    page LIKE '%/it-it%'    
-WHERE rank = 1
