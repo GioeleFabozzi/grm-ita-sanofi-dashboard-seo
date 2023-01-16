@@ -11,7 +11,10 @@ FROM
 )
 
 SELECT 
-    *
+    * EXCEPT(page),
+    CASE
+        WHEN page LIKE '%.com%' THEN SUBSTRING(page,  STRPOS(page, "/it"), LENGTH(page))
+        ELSE REPLACE(page, 'https://www.fexallegra.it', '') END AS page
 FROM 
     temp_viz_gsc_query_page 
 ORDER BY 
