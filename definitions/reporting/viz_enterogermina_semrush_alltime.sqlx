@@ -1,0 +1,34 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    keyword,
+    tag,
+    enterogermina_landing,
+    enterogermina_type,
+    CAST(enterogermina_position AS FLOAT64) AS enterogermina_position,
+    CAST(enterogermina_difference AS FLOAT64) AS enterogermina_difference,
+    yovis_landing,
+    yovis_type,
+    CAST(yovis_position AS FLOAT64) AS yovis_position,
+    CAST(yovis_difference AS FLOAT64) AS yovis_difference,
+    geffer_landing,
+    geffer_type,
+    CAST(geffer_position AS FLOAT64) AS geffer_position,
+    CAST(geffer_difference AS FLOAT64) AS geffer_difference,
+    lactoflorene_landing,
+    lactoflorene_type,
+    CAST(lactoflorene_position AS FLOAT64) AS lactoflorene_position,
+    CAST(lactoflorene_difference AS FLOAT64) AS lactoflorene_difference,
+    laevolac_landing,
+    laevolac_type,
+    CAST(laevolac_position AS FLOAT64) AS laevolac_position,
+    CAST(laevolac_difference AS FLOAT64) AS laevolac_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_enterogermina_semrush_alltime_tbl')}
+-- WHERE 
+--     enterogermina_landing is not null
