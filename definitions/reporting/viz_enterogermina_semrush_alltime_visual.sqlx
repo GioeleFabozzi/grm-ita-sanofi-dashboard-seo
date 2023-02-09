@@ -11,7 +11,7 @@ SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2),
     AVG(CAST(enterogermina_position AS FLOAT64)) AS position,
     SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
-    ${ref('raw_enterogermina_semrush_alltime_tbl')}
+    ${ref('raw_enterogermina_semrush_alltime')}
 WHERE 
     enterogermina_landing is not null 
 GROUP BY     
@@ -27,7 +27,7 @@ SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2),
     AVG(CAST(yovis_position AS FLOAT64)) AS position,
     SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
-    ${ref('raw_enterogermina_semrush_alltime_tbl')}
+    ${ref('raw_enterogermina_semrush_alltime')}
 WHERE 
     yovis_landing is not null 
 GROUP BY     
@@ -43,7 +43,7 @@ SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2),
    AVG(CAST(geffer_position AS FLOAT64)) AS position,
    SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
-   ${ref('raw_enterogermina_semrush_alltime_tbl')}
+   ${ref('raw_enterogermina_semrush_alltime')}
 WHERE 
    geffer_landing is not null 
 GROUP BY     
@@ -59,7 +59,7 @@ SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2),
     AVG(CAST(laevolac_position AS FLOAT64)) AS position,
     SUM (CAST(volume AS FLOAT64)) as total_volume
 FROM 
-    ${ref('raw_enterogermina_semrush_alltime_tbl')}
+    ${ref('raw_enterogermina_semrush_alltime')}
 WHERE 
   laevolac_landing is not null 
 GROUP BY     
@@ -75,7 +75,7 @@ SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2),
     AVG(CAST(lactoflorene_position AS FLOAT64)) AS position,
     SUM (CAST(volume AS FLOAT64)) as total_volume
 FROM 
-    ${ref('raw_enterogermina_semrush_alltime_tbl')}
+    ${ref('raw_enterogermina_semrush_alltime')}
 WHERE 
   lactoflorene_landing is not null 
 GROUP BY     
