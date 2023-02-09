@@ -29,6 +29,6 @@ SELECT
     CAST(cpc AS FLOAT64) AS cpc,
     CAST(volume AS FLOAT64) AS volume
 FROM 
-  ${ref('raw_enterogermina_semrush_alltime_tbl')}
+  ${ref('raw_enterogermina_semrush_alltime')}
 -- WHERE 
 --     enterogermina_landing is not null
