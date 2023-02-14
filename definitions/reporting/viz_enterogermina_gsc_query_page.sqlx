@@ -18,6 +18,6 @@ SELECT
 FROM 
     temp_viz_gsc_query_page 
 WHERE
-    page LIKE '%/it-it%'
+    page LIKE '%/it-it%' OR page LIKE '%.it%'
 ORDER BY 
-    date, query, page, site_url
+    date, query, page, site_url 
