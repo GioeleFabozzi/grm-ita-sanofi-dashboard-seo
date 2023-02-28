@@ -1,0 +1,34 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    keyword,
+    tag,
+    novanight_landing,
+    novanight_type,
+    CAST(novanight_position AS FLOAT64) AS novanight_position,
+    CAST(novanight_difference AS FLOAT64) AS novanight_difference,
+    zzzquilnatura_landing,
+    zzzquilnatura_type,
+    CAST(zzzquilnatura_position AS FLOAT64) AS zzzquilnatura_position,
+    CAST(zzzquilnatura_difference AS FLOAT64) AS zzzquilnatura_difference,
+    bonomelli_landing,
+    bonomelli_type,
+    CAST(bonomelli_position AS FLOAT64) AS bonomelli_position,
+    CAST(bonomelli_difference AS FLOAT64) AS bonomelli_difference,
+    linea_act_landing,
+    linea_act_type,
+    CAST(linea_act_position AS FLOAT64) AS linea_act_position,
+    CAST(linea_act_difference AS FLOAT64) AS linea_act_difference,
+    valdispert_landing,
+    valdispert_type,
+    CAST(valdispert_position AS FLOAT64) AS valdispert_position,
+    CAST(valdispert_difference AS FLOAT64) AS valdispert_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_novanight_semrush_alltime')}
+-- WHERE 
+--     novanight_landing is not null

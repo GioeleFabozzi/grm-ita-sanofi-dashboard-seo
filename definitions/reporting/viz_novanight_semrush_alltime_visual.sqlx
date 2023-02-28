@@ -1,0 +1,87 @@
+config {
+  type: "table"
+}
+
+WITH all_tbl AS (
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'novanight' AS source,
+    'novanight' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(novanight_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_novanight_semrush_alltime')}
+WHERE 
+    novanight_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'zzzquilnatura' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(zzzquilnatura_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_novanight_semrush_alltime')}
+WHERE 
+    zzzquilnatura_landing is not null 
+GROUP BY     
+   1,4,5
+    
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+   'bonomelli' AS source,
+   'competitor' AS iscompetitor,
+   keyword,
+   tag,
+   AVG(CAST(bonomelli_position AS FLOAT64)) AS position,
+   SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+   ${ref('raw_novanight_semrush_alltime')}
+WHERE 
+   bonomelli_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'linea_act' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(linea_act_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_novanight_semrush_alltime')}
+WHERE 
+  linea_act_landing is not null 
+GROUP BY     
+   1,4,5
+  
+ UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'valdispert' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(valdispert_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_novanight_semrush_alltime')}
+WHERE 
+  valdispert_landing is not null 
+GROUP BY     
+   1,4,5
+
+)
+
+SELECT * FROM all_tbl
+    
