@@ -1,0 +1,34 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    keyword,
+    tag,
+    buscofen_landing,
+    buscofen_type,
+    CAST(buscofen_position AS FLOAT64) AS buscofen_position,
+    CAST(buscofen_difference AS FLOAT64) AS buscofen_difference,
+    spididol_landing,
+    spididol_type,
+    CAST(spididol_position AS FLOAT64) AS spididol_position,
+    CAST(spididol_difference AS FLOAT64) AS spididol_difference,
+    brufendolore_landing,
+    brufendolore_type,
+    CAST(brufendolore_position AS FLOAT64) AS brufendolore_position,
+    CAST(brufendolore_difference AS FLOAT64) AS brufendolore_difference,
+    ilmalditesta_landing,
+    ilmalditesta_type,
+    CAST(ilmalditesta_position AS FLOAT64) AS ilmalditesta_position,
+    CAST(ilmalditesta_difference AS FLOAT64) AS ilmalditesta_difference,
+    okiinfiammazioneedolore_landing,
+    okiinfiammazioneedolore_type,
+    CAST(okiinfiammazioneedolore_position AS FLOAT64) AS okiinfiammazioneedolore_position,
+    CAST(okiinfiammazioneedolore_difference AS FLOAT64) AS okiinfiammazioneedolore_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_buscofen_semrush_alltime')}
+-- WHERE 
+--     buscofen_landing is not null

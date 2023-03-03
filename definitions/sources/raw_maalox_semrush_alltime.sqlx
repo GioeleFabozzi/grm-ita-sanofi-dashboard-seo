@@ -1,0 +1,6 @@
+config {
+  type: "declaration",
+  schema: "dashboard_seo_raw",
+  name: "raw_maalox_semrush_alltime",
+  description: ""
+}

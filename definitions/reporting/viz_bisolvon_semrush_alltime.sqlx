@@ -1,0 +1,34 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    keyword,
+    tag,
+    bisolvon_landing,
+    bisolvon_type,
+    CAST(bisolvon_position AS FLOAT64) AS bisolvon_position,
+    CAST(bisolvon_difference AS FLOAT64) AS bisolvon_difference,
+    seki_landing,
+    seki_type,
+    CAST(seki_position AS FLOAT64) AS seki_position,
+    CAST(seki_difference AS FLOAT64) AS seki_difference,
+    fluimucil_landing,
+    fluimucil_type,
+    CAST(fluimucil_position AS FLOAT64) AS fluimucil_position,
+    CAST(fluimucil_difference AS FLOAT64) AS fluimucil_difference,
+    grintus_landing,
+    grintus_type,
+    CAST(grintus_position AS FLOAT64) AS grintus_position,
+    CAST(grintus_difference AS FLOAT64) AS grintus_difference,
+    bronchenolo_landing,
+    bronchenolo_type,
+    CAST(bronchenolo_position AS FLOAT64) AS bronchenolo_position,
+    CAST(bronchenolo_difference AS FLOAT64) AS bronchenolo_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_bisolvon_semrush_alltime')}
+-- WHERE 
+--     bisolvon_landing is not null

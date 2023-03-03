@@ -1,0 +1,34 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    keyword,
+    tag,
+    dulcolax_landing,
+    dulcolax_type,
+    CAST(dulcolax_position AS FLOAT64) AS dulcolax_position,
+    CAST(dulcolax_difference AS FLOAT64) AS dulcolax_difference,
+    evaqu_landing,
+    evaqu_type,
+    CAST(evaqu_position AS FLOAT64) AS evaqu_position,
+    CAST(evaqu_difference AS FLOAT64) AS evaqu_difference,
+    evaqu_landing,
+    evaqu_type,
+    CAST(evaqu_position AS FLOAT64) AS evaqu_position,
+    CAST(evaqu_difference AS FLOAT64) AS evaqu_difference,
+    geffer_landing,
+    geffer_type,
+    CAST(geffer_position AS FLOAT64) AS geffer_position,
+    CAST(geffer_difference AS FLOAT64) AS geffer_difference,
+    laevolac_landing,
+    laevolac_type,
+    CAST(laevolac_position AS FLOAT64) AS laevolac_position,
+    CAST(laevolac_difference AS FLOAT64) AS laevolac_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_dulcolax_semrush_alltime')}
+-- WHERE 
+--     dulcolax_landing is not null

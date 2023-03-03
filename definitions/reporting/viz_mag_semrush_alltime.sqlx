@@ -1,0 +1,34 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    keyword,
+    tag,
+    mag_landing,
+    mag_type,
+    CAST(mag_position AS FLOAT64) AS mag_position,
+    CAST(mag_difference AS FLOAT64) AS mag_difference,
+    supradyn_landing,
+    supradyn_type,
+    CAST(supradyn_position AS FLOAT64) AS supradyn_position,
+    CAST(supradyn_difference AS FLOAT64) AS supradyn_difference,
+    sustenium_landing,
+    sustenium_type,
+    CAST(sustenium_position AS FLOAT64) AS sustenium_position,
+    CAST(sustenium_difference AS FLOAT64) AS sustenium_difference,
+    magnesiosupremo_landing,
+    magnesiosupremo_type,
+    CAST(magnesiosupremo_position AS FLOAT64) AS magnesiosupremo_position,
+    CAST(magnesiosupremo_difference AS FLOAT64) AS magnesiosupremo_difference,
+    carnidyn_landing,
+    carnidyn_type,
+    CAST(carnidyn_position AS FLOAT64) AS carnidyn_position,
+    CAST(carnidyn_difference AS FLOAT64) AS carnidyn_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_mag_semrush_alltime')}
+-- WHERE 
+--     mag_landing is not null
