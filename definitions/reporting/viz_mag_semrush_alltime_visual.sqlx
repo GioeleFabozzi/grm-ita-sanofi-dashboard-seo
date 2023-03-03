@@ -1,0 +1,87 @@
+config {
+  type: "table"
+}
+
+WITH all_tbl AS (
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'mag' AS source,
+    'mag' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(mag_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_mag_semrush_alltime')}
+WHERE 
+    mag_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'supradyn' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(supradyn_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_mag_semrush_alltime')}
+WHERE 
+    supradyn_landing is not null 
+GROUP BY     
+   1,4,5
+    
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+   'sustenium' AS source,
+   'competitor' AS iscompetitor,
+   keyword,
+   tag,
+   AVG(CAST(sustenium_position AS FLOAT64)) AS position,
+   SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+   ${ref('raw_mag_semrush_alltime')}
+WHERE 
+   sustenium_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'magnesiosupremo' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(magnesiosupremo_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_mag_semrush_alltime')}
+WHERE 
+  magnesiosupremo_landing is not null 
+GROUP BY     
+   1,4,5
+  
+ UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'carnidyn' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(carnidyn_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_mag_semrush_alltime')}
+WHERE 
+  carnidyn_landing is not null 
+GROUP BY     
+   1,4,5
+
+)
+
+SELECT * FROM all_tbl
+    

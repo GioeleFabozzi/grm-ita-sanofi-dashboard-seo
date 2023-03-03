@@ -1,0 +1,87 @@
+config {
+  type: "table"
+}
+
+WITH all_tbl AS (
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'dulcalox' AS source,
+    'dulcolax' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(dulcolax_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_dulcolax_semrush_alltime')}
+WHERE 
+    dulcolax_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'evaqu' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(evaqu_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_dulcolax_semrush_alltime')}
+WHERE 
+    evaqu_landing is not null 
+GROUP BY     
+   1,4,5
+    
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+   'esi' AS source,
+   'competitor' AS iscompetitor,
+   keyword,
+   tag,
+   AVG(CAST(esi_position AS FLOAT64)) AS position,
+   SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+   ${ref('raw_dulcolax_semrush_alltime')}
+WHERE 
+   esi_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'geffer' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(geffer_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_dulcolax_semrush_alltime')}
+WHERE 
+  geffer_landing is not null 
+GROUP BY     
+   1,4,5
+  
+ UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'laevolac' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(laevolac_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_dulcolax_semrush_alltime')}
+WHERE 
+  laevolac_landing is not null 
+GROUP BY     
+   1,4,5
+
+)
+
+SELECT * FROM all_tbl
+    

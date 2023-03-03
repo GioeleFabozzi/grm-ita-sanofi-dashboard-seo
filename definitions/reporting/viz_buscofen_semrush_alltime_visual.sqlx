@@ -1,0 +1,87 @@
+config {
+  type: "table"
+}
+
+WITH all_tbl AS (
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'buscofen' AS source,
+    'buscofen' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(buscofen_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscofen_semrush_alltime')}
+WHERE 
+    buscofen_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'spididol' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(spididol_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscofen_semrush_alltime')}
+WHERE 
+    spididol_landing is not null 
+GROUP BY     
+   1,4,5
+    
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+   'brufendolore' AS source,
+   'competitor' AS iscompetitor,
+   keyword,
+   tag,
+   AVG(CAST(brufendolore_position AS FLOAT64)) AS position,
+   SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+   ${ref('raw_buscofen_semrush_alltime')}
+WHERE 
+   brufendolore_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'ilmalditesta' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(ilmalditesta_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscofen_semrush_alltime')}
+WHERE 
+  ilmalditesta_landing is not null 
+GROUP BY     
+   1,4,5
+  
+ UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'okiinfiammazioneedolore' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(okiinfiammazioneedolore_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscofen_semrush_alltime')}
+WHERE 
+  okiinfiammazioneedolore_landing is not null 
+GROUP BY     
+   1,4,5
+
+)
+
+SELECT * FROM all_tbl
+    
