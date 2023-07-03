@@ -1,0 +1,34 @@
+config {
+  type: "table"
+}
+
+SELECT 
+    CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    keyword,
+    tag,
+    buscopan_landing,
+    buscopan_type,
+    CAST(buscopan_position AS FLOAT64) AS buscopan_position,
+    CAST(buscopan_difference AS FLOAT64) AS buscopan_difference,
+    geffer_landing,
+    geffer_type,
+    CAST(geffer_position AS FLOAT64) AS geffer_position,
+    CAST(geffer_difference AS FLOAT64) AS geffer_difference,
+    biochetasi_landing,
+    biochetasi_type,
+    CAST(biochetasi_position AS FLOAT64) AS biochetasi_position,
+    CAST(biochetasi_difference AS FLOAT64) AS biochetasi_difference,
+    schwabe_landing,
+    schwabe_type,
+    CAST(schwabe_position AS FLOAT64) AS schwabe_position,
+    CAST(schwabe_difference AS FLOAT64) AS schwabe_difference,
+    piemmepharmatech_landing,
+    piemmepharmatech_type,
+    CAST(piemmepharmatech_position AS FLOAT64) AS piemmepharmatech_position,
+    CAST(piemmepharmatech_difference AS FLOAT64) AS piemmepharmatech_difference,
+    CAST(cpc AS FLOAT64) AS cpc,
+    CAST(volume AS FLOAT64) AS volume
+FROM 
+  ${ref('raw_buscopan_semrush_alltime')}
+-- WHERE 
+--     bisolvon_landing is not null

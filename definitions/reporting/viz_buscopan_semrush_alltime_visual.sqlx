@@ -1,0 +1,87 @@
+config {
+  type: "table"
+}
+
+WITH all_tbl AS (
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'buscopan' AS source,
+    'buscopan' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(buscopan_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscopan_semrush_alltime')}
+WHERE 
+    buscopan_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'geffer' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(geffer_position AS FLOAT64)) AS position,
+    SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscopan_semrush_alltime')}
+WHERE 
+    geffer_landing is not null 
+GROUP BY     
+   1,4,5
+    
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+   'biochetasi' AS source,
+   'competitor' AS iscompetitor,
+   keyword,
+   tag,
+   AVG(CAST(biochetasi_position AS FLOAT64)) AS position,
+   SUM(CAST(volume AS FLOAT64)) as total_volume
+FROM 
+   ${ref('raw_buscopan_semrush_alltime')}
+WHERE 
+   biochetasi_landing is not null 
+GROUP BY     
+   1,4,5
+
+UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'schwabe' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(schwabe_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscopan_semrush_alltime')}
+WHERE 
+  schwabe_landing is not null 
+GROUP BY     
+   1,4,5
+  
+ UNION ALL
+
+SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
+    'piemmepharmatech' AS source,
+    'competitor' AS iscompetitor,
+    keyword,
+    tag,
+    AVG(CAST(piemmepharmatech_position AS FLOAT64)) AS position,
+    SUM (CAST(volume AS FLOAT64)) as total_volume
+FROM 
+    ${ref('raw_buscopan_semrush_alltime')}
+WHERE 
+  piemmepharmatech_landing is not null 
+GROUP BY     
+   1,4,5
+
+)
+
+SELECT * FROM all_tbl
+    
