@@ -36,16 +36,16 @@ GROUP BY
 UNION ALL
 
 SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
-   'sanispira' AS source,
+   'anallergo' AS source,
    'competitor' AS iscompetitor,
    keyword,
    tag,
-   AVG(CAST(sanispira_position AS FLOAT64)) AS position,
+   AVG(CAST(anallergo_position AS FLOAT64)) AS position,
    SUM(CAST(volume AS FLOAT64)) as total_volume
 FROM 
    ${ref('raw_fexallegra_semrush_alltime')}
 WHERE 
-   sanispira_landing is not null 
+   anallergo_landing is not null 
 GROUP BY     
    1,4,5
 
@@ -85,3 +85,4 @@ GROUP BY
 
 SELECT * FROM all_tbl
     
+
