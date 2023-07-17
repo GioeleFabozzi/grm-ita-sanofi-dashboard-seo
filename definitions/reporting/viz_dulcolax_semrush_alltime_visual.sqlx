@@ -4,8 +4,8 @@ config {
 
 WITH all_tbl AS (
 SELECT     CAST(CONCAT(SUBSTRING(date_month,7,4),'-', SUBSTRING(date_month,4,2), '-', SUBSTRING(date_month,0,2)) AS DATE) AS date_month,
-    'dulcalox' AS source,
-    'dulcolax' AS iscompetitor,
+    'dulco' AS source,
+    'dulco' AS iscompetitor,
     keyword,
     tag,
     AVG(CAST(dulcolax_position AS FLOAT64)) AS position,
